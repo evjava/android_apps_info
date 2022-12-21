@@ -10,18 +10,23 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.arkivanov.decompose.defaultComponentContext
+import com.evjava.apps_info.api.ApperContextI
+import com.evjava.apps_info.ui.compose.RootContent
+import com.evjava.apps_info.ui.navigation.RootComponent
+import com.evjava.apps_info.ui.navigation.RootComponentI
 import com.evjava.apps_info.ui.theme.AppsInfoTheme
 
-class MainActivity : ComponentActivity() {
+class MainActivity : ComponentActivity(), ApperContextI {
+    lateinit var rootComponent: RootComponentI
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        rootComponent = RootComponent(this, defaultComponentContext())
+
         setContent {
-            AppsInfoTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    Greeting("Android")
-                }
-            }
+            RootContent(component = rootComponent)
         }
     }
 }
