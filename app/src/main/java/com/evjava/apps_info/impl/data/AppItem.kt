@@ -10,11 +10,7 @@ data class AppItem(
     val appName: String,
     val appPackage: String,
     val appVersion: String,
-    val appApkSHA1: String
-) : Item {
-    companion object {
-//        val DEMO = listOf(
-////            AppItem(ApplicationInfo.CATEGORY_ACCESSIBILITY)
-//        )
-    }
-}
+    val appApkSHA1: String,
+    val appSourceDir: String,
+    val canRun: Boolean,
+) : Item
