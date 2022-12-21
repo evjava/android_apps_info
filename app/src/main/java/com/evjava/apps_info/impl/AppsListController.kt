@@ -15,13 +15,13 @@ import com.evjava.apps_info.ui.navigation.Screen
 import com.evjava.apps_info.utils.RxUtils.wrapObservable
 import io.github.aakira.napier.Napier
 
-class AppsListController(bsc: BaseScreenContext, screen: Screen.AppsList) : ScreenControllerI, SearchControllerI, ApperContextI by bsc {
+class AppsListController(val bsc: BaseScreenContext, screen: Screen.AppsList) : ScreenControllerI, SearchControllerI, ApperContextI by bsc {
     override val title: Observable<String> = "Apps".wrapObservable
-    override val items = BehaviorSubject(ItemsState.EMPTY)
+    val items = BehaviorSubject(ItemsState.EMPTY)
     override val search = BehaviorSubject<SearchState>(SearchState.Disabled)
     override val news = PublishSubject<Message>()
 
-    val allApps = appsProvider.getApps(SearchState.Disabled)
+    private val allApps = appsProvider.getApps(SearchState.Disabled)
 
     init {
         search.subscribe { ss ->
@@ -44,5 +44,9 @@ class AppsListController(bsc: BaseScreenContext, screen: Screen.AppsList) : Scre
     fun launch(packageName: String) {
         val status = appsProvider.launchApp(packageName)
         news.onNext(Message(status))
+    }
+
+    fun details(packageName: String) {
+        bsc.screenOpenCallback(Screen.AppInfo(packageName))
     }
 }

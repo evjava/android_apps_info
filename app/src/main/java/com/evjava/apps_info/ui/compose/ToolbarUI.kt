@@ -1,4 +1,4 @@
-package com.evjava.unotes.ui_front.compose.root
+package com.evjava.apps_info.ui.compose
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
@@ -20,7 +20,6 @@ import com.evjava.apps_info.api.SearchControllerI
 import com.evjava.apps_info.api.SearchState
 import com.evjava.apps_info.api.SearchState.Companion.asSearch
 import com.evjava.apps_info.ui.compose.ComposeUtil.subscribeAsState
-import com.evjava.apps_info.ui.compose.SearchFieldUI
 
 @Composable
 fun ToolbarUI(controller: ScreenControllerI, backPressedHandler: (() -> Boolean) -> Unit) {

@@ -8,5 +8,5 @@ sealed class Screen(val name: String) : Parcelable {
     data class AppsList(val search: String = "") : Screen("apps_list")
 
     @Parcelize
-    data class AppInfo(val app: String) : Screen("app_info")
+    data class AppInfo(val packageName: String) : Screen("app_info")
 }

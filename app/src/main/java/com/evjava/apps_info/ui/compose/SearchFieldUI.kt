@@ -33,6 +33,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.evjava.apps_info.api.SearchState
+import com.evjava.apps_info.ui.theme.LocalExtColors
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -76,7 +77,7 @@ fun SearchFieldUI(searchState: SearchState.Enabled, isDisabled: MutableState<Boo
                 IconButton(onClick = { callback(null) }) {
                     Icon(
                         imageVector = Icons.Default.Close,
-                        tint = Color.Black, // todo fix
+//                        tint = LocalExtColors.current.text,
                         contentDescription = null
                     )
                 }

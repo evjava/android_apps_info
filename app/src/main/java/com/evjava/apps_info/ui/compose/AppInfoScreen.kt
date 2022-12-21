@@ -5,5 +5,7 @@ import com.evjava.apps_info.impl.AppInfoController
 
 @Composable
 fun AppInfoScreen(si: AppInfoController) {
+    val app = si.app
 
+    AppDetailedItemUI(app, si::launch) {}
 }

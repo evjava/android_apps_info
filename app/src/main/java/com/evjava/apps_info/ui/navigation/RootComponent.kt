@@ -4,6 +4,7 @@ import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
+import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.decompose.value.Value
 import com.evjava.apps_info.api.ApperContextI
 import com.evjava.apps_info.api.BaseScreenContext
@@ -24,13 +25,10 @@ class RootComponent(val ac: ApperContextI, cc: ComponentContext) : RootComponent
     private fun initialStack(): List<Screen> = listOf(Screen.AppsList())
 
     private fun createChild(screen: Screen, cc: ComponentContext) : ScreenControllerI {
-        val bsc = BaseScreenContext(screen, ac, cc)
+        val bsc = BaseScreenContext(screen, ac, cc, navigation::push)
         return when (screen) {
-            is Screen.AppsList -> {
-                AppsListController(bsc, screen)
-            }
-            is Screen.AppInfo -> AppInfoController(bsc, screen)
+            is Screen.AppsList -> AppsListController(bsc, screen)
+            is Screen.AppInfo  -> AppInfoController(bsc, screen)
         }
     }
-
 }

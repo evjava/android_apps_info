@@ -5,4 +5,5 @@ import com.evjava.apps_info.impl.data.AppItem
 interface AppsProviderI {
     fun getApps(search: SearchState): List<AppItem>
     fun launchApp(packageName: String): String
+    fun getByPackageName(packageName: String): AppItem?
 }

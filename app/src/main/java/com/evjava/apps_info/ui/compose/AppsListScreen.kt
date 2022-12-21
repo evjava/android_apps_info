@@ -39,7 +39,7 @@ fun AppsListScreen(si: AppsListController) {
         ) {
             itemsIndexed(itemsState.items) { _, i: Item ->
                 when (i) {
-                    is AppItem -> AppItemUI(i, si::launch)
+                    is AppItem -> AppItemUI(i, si::launch, si::details)
                     else -> Text("Item not implemented")
                 }
             }

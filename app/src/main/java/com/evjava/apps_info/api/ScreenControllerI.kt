@@ -6,7 +6,5 @@ import com.evjava.apps_info.api.data.ItemsState
 
 interface ScreenControllerI {
     val title: Observable<String>
-
-    val items: Observable<ItemsState>
     val news: PublishSubject<Message>
 }

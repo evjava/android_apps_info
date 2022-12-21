@@ -20,8 +20,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.evjava.apps_info.impl.data.AppItem
 
+// todo fix duplication here and in AppItemsUI
 @Composable
-fun AppItemUI(i: AppItem, launchCallback: (String) -> Unit, detailsCallback: (String) -> Unit) {
+fun AppDetailedItemUI(i: AppItem, launchCallback: (String) -> Unit, detailsCallback: (String) -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxSize()
@@ -40,10 +41,10 @@ fun AppItemUI(i: AppItem, launchCallback: (String) -> Unit, detailsCallback: (St
                         }
                     }
                 }
-//                Text(text = "version: ${i.appVersion}", fontSize = 14.sp)
-//                Text(text = "package: ${i.appPackage}", fontSize = 14.sp)
+                Text(text = "version: ${i.appVersion}", fontSize = 14.sp)
+                Text(text = "package: ${i.appPackage}", fontSize = 14.sp)
 //                Text(text = "SD: ${i.appSourceDir}", fontSize = 14.sp)
-//                Text(text = "SHA-1: ${i.appApkSHA1}", fontSize = 11.sp)
+                Text(text = "SHA-1: ${i.appApkSHA1}", fontSize = 11.sp)
             }
         }
     }

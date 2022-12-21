@@ -1,6 +1,6 @@
 package com.evjava.apps_info.api
 
-import android.content.pm.PackageManager
+import com.evjava.apps_info.ui.navigation.Screen
 
 interface ApperContextI {
     val appsProvider: AppsProviderI
