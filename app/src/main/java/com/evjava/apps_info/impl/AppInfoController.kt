@@ -12,12 +12,10 @@ import com.evjava.apps_info.utils.RxUtils.wrapObservable
 class AppInfoController(bsc: BaseScreenContext, screen: Screen.AppInfo) : ScreenControllerI, ApperContextI by bsc {
     val app = bsc.ac.appsProvider.getByPackageName(screen.packageName)!!
 
-    override val title: Observable<String> = "info: ${app.appName}".wrapObservable
+    override val title: Observable<String> = "Info".wrapObservable
     override val news = PublishSubject<Message>()
 
-    // todo fix duplication
-    fun launch(packageName: String) {
-        val status = appsProvider.launchApp(packageName)
-        news.onNext(Message(status))
-    }
+    // todo fix duplication here and in `AppsListController`
+    fun launch(packageName: String) = news.onNext(Message(appsProvider.launchApp(packageName)))
+    override fun onNews(news: Message) = this.news.onNext(news)
 }

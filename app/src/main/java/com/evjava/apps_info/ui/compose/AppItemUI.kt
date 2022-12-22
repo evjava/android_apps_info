@@ -21,29 +21,16 @@ import androidx.compose.ui.unit.sp
 import com.evjava.apps_info.impl.data.AppItem
 
 @Composable
-fun AppItemUI(i: AppItem, launchCallback: (String) -> Unit, detailsCallback: (String) -> Unit) {
+fun AppItemUI(appItem: AppItem, launchCallback: (String) -> Unit, detailsCallback: (String) -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxSize()
             .padding(2.dp)
-            .clickable { detailsCallback(i.appPackage) }
+            .clickable { detailsCallback(appItem.appPackage) }
     ) {
         Row {
             Column {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    DrawableImage(drawable = i.icon)
-                    Text(text = i.appName, fontSize = 18.sp, fontWeight = FontWeight.Bold)
-                    Spacer(modifier = Modifier.weight(1f))
-                    if (i.canRun) {
-                        Button(onClick = { launchCallback(i.appPackage) }) {
-                            Icon(imageVector = Icons.Default.Launch, contentDescription = null)
-                        }
-                    }
-                }
-//                Text(text = "version: ${i.appVersion}", fontSize = 14.sp)
-//                Text(text = "package: ${i.appPackage}", fontSize = 14.sp)
-//                Text(text = "SD: ${i.appSourceDir}", fontSize = 14.sp)
-//                Text(text = "SHA-1: ${i.appApkSHA1}", fontSize = 11.sp)
+                AppRowUI(appItem = appItem, fullTitle = false, launchCallback = launchCallback)
             }
         }
     }

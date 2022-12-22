@@ -7,4 +7,6 @@ import com.evjava.apps_info.api.data.ItemsState
 interface ScreenControllerI {
     val title: Observable<String>
     val news: PublishSubject<Message>
+
+    fun onNews(news: Message)
 }

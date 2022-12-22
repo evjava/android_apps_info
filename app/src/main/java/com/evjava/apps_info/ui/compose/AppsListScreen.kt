@@ -22,7 +22,7 @@ import com.evjava.apps_info.ui.compose.ComposeUtil.subscribeAsState
 @Composable
 fun AppsListScreen(si: AppsListController) {
     val itemsState by si.items.subscribeAsState(initState = ItemsState.EMPTY)
-    var news by si.news.subscribeAsNews()
+    val news by si.news.subscribeAsNews()
 
     Column {
         Row {

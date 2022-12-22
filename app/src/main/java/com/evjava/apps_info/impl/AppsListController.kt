@@ -37,16 +37,8 @@ class AppsListController(val bsc: BaseScreenContext, screen: Screen.AppsList) : 
         }
     }
 
-    override fun onSearchNews(newSearch: SearchState) {
-        search.onNext(newSearch)
-    }
-
-    fun launch(packageName: String) {
-        val status = appsProvider.launchApp(packageName)
-        news.onNext(Message(status))
-    }
-
-    fun details(packageName: String) {
-        bsc.screenOpenCallback(Screen.AppInfo(packageName))
-    }
+    override fun onSearchNews(newSearch: SearchState) = search.onNext(newSearch)
+    fun launch(packageName: String) = news.onNext(Message(appsProvider.launchApp(packageName)))
+    fun details(packageName: String) = bsc.screenOpenCallback(Screen.AppInfo(packageName))
+    override fun onNews(news: Message) = this.news.onNext(news)
 }

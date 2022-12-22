@@ -11,8 +11,8 @@ import androidx.compose.ui.unit.dp
 import com.evjava.apps_info.utils.DrawableUtils.drawableToBitmap
 
 @Composable
-fun DrawableImage(drawable: Drawable) {
-    val bitmap = drawable.drawableToBitmap()
+fun DrawableImage(drawable: Drawable?) {
+    val bitmap = drawable?.drawableToBitmap()
     if (bitmap != null) {
         Image(
             modifier = Modifier.width(40.dp),
