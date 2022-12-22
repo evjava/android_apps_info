@@ -9,8 +9,11 @@ import android.graphics.drawable.Drawable
 
 
 object DrawableUtils {
-    // todo refine this method
-    // https://stackoverflow.com/a/10600736
+    /**
+     * Bitmap to Drawable converter
+     * TODO refine this method
+     * taken from: https://stackoverflow.com/a/10600736
+     */
     fun Drawable.drawableToBitmap(): Bitmap? {
         val drawable = this
         if (drawable is BitmapDrawable) {

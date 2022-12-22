@@ -11,8 +11,6 @@ import com.evjava.apps_info.impl.data.AppItem
 object PackageManagerExt {
     fun PackageManager.getApps(search: SearchState): List<AppItem> {
         val infos: List<ApplicationInfo> = this.getInstalledApplications(PackageManager.GET_META_DATA)
-
-        // todo search
         return infos.mapNotNull { this.getByPackageName(it.packageName) }
     }
 

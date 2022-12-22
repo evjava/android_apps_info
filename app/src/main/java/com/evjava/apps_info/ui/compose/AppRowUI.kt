@@ -1,11 +1,13 @@
 package com.evjava.apps_info.ui.compose
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
-import androidx.compose.material.Button
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Launch
+import androidx.compose.material.icons.filled.RocketLaunch
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -13,6 +15,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.evjava.apps_info.impl.data.AppItem
+import com.evjava.apps_info.ui.theme.LocalExtColors
 
 @Composable
 fun AppRowUI(appItem: AppItem, fullTitle: Boolean, launchCallback: (String) -> Unit) {
@@ -21,8 +24,8 @@ fun AppRowUI(appItem: AppItem, fullTitle: Boolean, launchCallback: (String) -> U
         val maxLines = if (fullTitle) 100 else 1
         Text(modifier = Modifier.weight(1f), maxLines = maxLines, text = appItem.appName, fontSize = 18.sp, fontWeight = FontWeight.Bold)
         if (appItem.canRun) {
-            Button(onClick = { launchCallback(appItem.appPackage) }) {
-                Icon(imageVector = Icons.Default.Launch, contentDescription = null)
+            IconButton(modifier = Modifier.background(MaterialTheme.colors.primary), onClick = { launchCallback(appItem.appPackage) }) {
+                Icon(imageVector = Icons.Default.RocketLaunch, tint = LocalExtColors.current.icon, contentDescription = null)
             }
         }
     }

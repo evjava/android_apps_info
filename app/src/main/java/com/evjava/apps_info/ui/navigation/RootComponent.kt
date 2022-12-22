@@ -36,9 +36,11 @@ class RootComponent(val ac: ApperContextI, cc: ComponentContext) : RootComponent
         }
     }
 
+    // BACKPRESS LOGIC
+    var searchBack: () -> Boolean = { false }
     init {
         backHandler.register(BackCallback {
-            router.value.backStack.isNotEmpty().doIf { navigation.pop() } || processDoublePress()
+            searchBack() || router.value.backStack.isNotEmpty().doIf { navigation.pop() } || processDoublePress()
         })
     }
     private var backPressedTime = 0L
@@ -50,5 +52,9 @@ class RootComponent(val ac: ApperContextI, cc: ComponentContext) : RootComponent
             router.value.active.instance.onNews(Message("Click back again to exit..."))
         }
         return t
+    }
+
+    override fun registerBackForSearch(callback: () -> Boolean) {
+        searchBack = callback
     }
 }

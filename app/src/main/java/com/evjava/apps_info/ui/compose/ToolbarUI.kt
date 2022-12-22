@@ -4,10 +4,19 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.*
+import androidx.compose.material.ContentAlpha
+import androidx.compose.material.Icon
+import androidx.compose.material.LocalContentAlpha
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.ProvideTextStyle
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,6 +29,7 @@ import com.evjava.apps_info.api.SearchControllerI
 import com.evjava.apps_info.api.SearchState
 import com.evjava.apps_info.api.SearchState.Companion.asSearch
 import com.evjava.apps_info.ui.compose.ComposeUtil.subscribeAsState
+import com.evjava.apps_info.ui.theme.LocalExtColors
 
 @Composable
 fun ToolbarUI(controller: ScreenControllerI, backPressedHandler: (() -> Boolean) -> Unit) {
@@ -58,9 +68,7 @@ private fun IconUI(img: ImageVector, callback: (SearchState) -> Unit) {
     Icon(
         modifier = Modifier
             .padding(14.dp)
-            .clickable { callback(SearchState.SEARCH) },
-        imageVector = img,
-        tint = Color.Black, // todo fix
+            .clickable { callback(SearchState.SEARCH) }, imageVector = img, tint = LocalExtColors.current.icon,
         contentDescription = null
     )
 }
@@ -74,7 +82,7 @@ private fun RowScope.ToolbarTextIconsUI(toolbar: ScreenControllerI, extra: @Comp
             Text(
                 modifier = Modifier.weight(1f),
                 text = title,
-                color = Color.Black, // todo fix
+                color = LocalExtColors.current.text,
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 1,
             )

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -18,6 +19,7 @@ import com.evjava.apps_info.impl.AppsListController
 import com.evjava.apps_info.impl.data.AppItem
 import com.evjava.apps_info.ui.compose.ComposeUtil.subscribeAsNews
 import com.evjava.apps_info.ui.compose.ComposeUtil.subscribeAsState
+import com.evjava.apps_info.ui.compose.utils.VerticalFastScroller
 
 @Composable
 fun AppsListScreen(si: AppsListController) {
@@ -25,22 +27,25 @@ fun AppsListScreen(si: AppsListController) {
     val news by si.news.subscribeAsNews()
 
     Column {
-        Row {
+        Row(modifier = Modifier.padding(end = 7.dp, top = 3.dp)) {
             Text(modifier = Modifier.weight(1f), text = "")
             Text(text = "# ${itemsState.items.size}")
         }
 
-        LazyColumn(
-            modifier = Modifier
-                .padding(3.dp)
-                .weight(1f)
-                .fillMaxWidth()
-            ,
-        ) {
-            itemsIndexed(itemsState.items) { _, i: Item ->
-                when (i) {
-                    is AppItem -> AppItemUI(i, si::launch, si::details)
-                    else -> Text("Item not implemented")
+        val listState = rememberLazyListState()
+        VerticalFastScroller(listState = listState, isReversed = false) {
+            LazyColumn(
+                modifier = Modifier
+                    .padding(3.dp)
+                    .weight(1f)
+                    .fillMaxWidth(),
+                state = listState,
+            ) {
+                itemsIndexed(itemsState.items) { _, i: Item ->
+                    when (i) {
+                        is AppItem -> AppItemUI(i, si::launch, si::details)
+                        else -> Text("Item not implemented")
+                    }
                 }
             }
         }

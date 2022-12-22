@@ -60,7 +60,7 @@ fun SearchFieldUI(searchState: SearchState.Enabled, isDisabled: MutableState<Boo
             .fillMaxWidth()
             .padding(start = 0.dp, top = 0.dp, bottom = 0.dp)
             .focusRequester(focusRequester),
-        textStyle = TextStyle(fontSize = 18.sp, color = Color.Black), // todo fix
+        textStyle = TextStyle(fontSize = 18.sp, color = LocalExtColors.current.text),
         placeholder = { Text(text = "Search...") },
         colors = TextFieldDefaults.textFieldColors(
             focusedIndicatorColor = Color.Transparent,
@@ -77,7 +77,7 @@ fun SearchFieldUI(searchState: SearchState.Enabled, isDisabled: MutableState<Boo
                 IconButton(onClick = { callback(null) }) {
                     Icon(
                         imageVector = Icons.Default.Close,
-//                        tint = LocalExtColors.current.text,
+                        tint = LocalExtColors.current.icon,
                         contentDescription = null
                     )
                 }
