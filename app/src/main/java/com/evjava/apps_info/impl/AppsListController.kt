@@ -21,7 +21,7 @@ import java.util.Locale
 class AppsListController(val bsc: BaseScreenContext, screen: Screen.AppsList) : ScreenControllerI, SearchControllerI, ApperContextI by bsc {
     override val title: Observable<String> = "Apps".wrapObservable
     val items = BehaviorSubject(ItemsState.EMPTY)
-    override val search = BehaviorSubject<SearchState>(timestampToSearchState(screen.timestamp))
+    override val search = BehaviorSubject(timestampToSearchState(screen.timestamp))
     override val news = PublishSubject<Message>()
 
     private val allApps = appsProvider.getApps()

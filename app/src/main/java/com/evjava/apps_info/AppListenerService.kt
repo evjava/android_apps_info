@@ -61,7 +61,7 @@ class AppListenerService : Service() {
         return NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle(title)
             .setContentText(text)
-            .setSmallIcon(R.drawable.app_icon)
+            .setSmallIcon(R.mipmap.ic_launcher)
             .setContentIntent(pendingIntent)
             .build()
     }
