@@ -9,12 +9,12 @@ import android.content.Intent
 import android.os.Build
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
-import com.evjava.apps_info.MainActivity.Companion.TIMESTAMP_KEY
 import com.evjava.apps_info.MainActivity.Companion.SHOW_INSTALLED_KEY
+import com.evjava.apps_info.MainActivity.Companion.TIMESTAMP_KEY
 import com.evjava.apps_info.PackageManagerExt.getInstalledAppsFrom
-import io.github.aakira.napier.Napier
 import com.evjava.apps_info.impl.data.AppItem
 import com.evjava.apps_info.utils.CodeUtils.startWhileTrueThread
+import io.github.aakira.napier.Napier
 
 class AppListenerService : Service() {
     override fun onBind(intent: Intent?): IBinder? = null

@@ -8,13 +8,13 @@ import com.arkivanov.decompose.router.stack.pop
 import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.backhandler.BackCallback
-import com.evjava.apps_info.utils.CodeUtils.doIf
 import com.evjava.apps_info.api.ApperContextI
 import com.evjava.apps_info.api.BaseScreenContext
 import com.evjava.apps_info.api.Message
 import com.evjava.apps_info.api.ScreenControllerI
 import com.evjava.apps_info.impl.AppInfoController
 import com.evjava.apps_info.impl.AppsListController
+import com.evjava.apps_info.utils.CodeUtils.doIf
 
 class RootComponent(val ac: ApperContextI, cc: ComponentContext, val timestamp: Long) : RootComponentI, ApperContextI by ac, ComponentContext by cc {
     private val navigation = StackNavigation<Screen>()
