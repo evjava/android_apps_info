@@ -19,17 +19,16 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.evjava.apps_info.BooleanExt.doIf
 import com.evjava.apps_info.api.ScreenControllerI
 import com.evjava.apps_info.api.SearchControllerI
 import com.evjava.apps_info.api.SearchState
 import com.evjava.apps_info.api.SearchState.Companion.asSearch
 import com.evjava.apps_info.ui.compose.ComposeUtil.subscribeAsState
 import com.evjava.apps_info.ui.theme.LocalExtColors
+import com.evjava.apps_info.utils.CodeUtils.doIf
 
 @Composable
 fun ToolbarUI(controller: ScreenControllerI, backPressedHandler: (() -> Boolean) -> Unit) {

@@ -5,14 +5,12 @@ import android.content.pm.PackageManager
 import com.evjava.apps_info.PackageManagerExt.getApps
 import com.evjava.apps_info.PackageManagerExt.getByPackageName
 import com.evjava.apps_info.api.AppsProviderI
-import com.evjava.apps_info.api.SearchState
 import com.evjava.apps_info.impl.data.AppItem
 import io.github.aakira.napier.Napier
 
 class AppsProvider(val pm: PackageManager, val launchCallback: (Intent) -> Unit) : AppsProviderI {
-    override fun getApps(search: SearchState): List<AppItem> {
-        return pm.getApps(search)
-    }
+    override fun getApps(): List<AppItem> = pm.getApps()
+    override fun getByPackageName(packageName: String): AppItem? = pm.getByPackageName(packageName)
 
     override fun launchApp(packageName: String): String {
         val i: Intent? = pm.getLaunchIntentForPackage(packageName)
@@ -23,7 +21,4 @@ class AppsProvider(val pm: PackageManager, val launchCallback: (Intent) -> Unit)
         }
     }
 
-    override fun getByPackageName(packageName: String): AppItem? {
-        return pm.getByPackageName(packageName)
-    }
 }

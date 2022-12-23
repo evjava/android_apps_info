@@ -42,7 +42,6 @@ fun RootContent(component: RootComponentI) {
                             }
                         }
                     )
-
                 }
             }
         }

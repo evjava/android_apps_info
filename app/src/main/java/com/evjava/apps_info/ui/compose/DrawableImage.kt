@@ -2,6 +2,8 @@ package com.evjava.apps_info.ui.compose
 
 import android.graphics.drawable.Drawable
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -15,7 +17,7 @@ fun DrawableImage(drawable: Drawable?) {
     val bitmap = drawable?.drawableToBitmap()
     if (bitmap != null) {
         Image(
-            modifier = Modifier.width(40.dp),
+            modifier = Modifier.size(35.dp).padding(2.dp),
             painter = BitmapPainter(image = bitmap.asImageBitmap()),
             contentDescription = null
         )

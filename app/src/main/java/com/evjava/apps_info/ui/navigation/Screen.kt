@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 sealed class Screen(val name: String) : Parcelable {
     @Parcelize
-    data class AppsList(val search: String = "") : Screen("apps_list")
+    data class AppsList(val timestamp: Long = 0, val search: String = "") : Screen("apps_list")
 
     @Parcelize
     data class AppInfo(val packageName: String) : Screen("app_info")

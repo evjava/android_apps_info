@@ -2,6 +2,7 @@ package com.evjava.apps_info.ui.compose
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -13,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.evjava.apps_info.impl.data.AppItem
 import com.evjava.apps_info.ui.theme.LocalExtColors
@@ -23,10 +25,8 @@ fun AppRowUI(appItem: AppItem, fullTitle: Boolean, launchCallback: (String) -> U
         DrawableImage(drawable = appItem.icon)
         val maxLines = if (fullTitle) 100 else 1
         Text(modifier = Modifier.weight(1f), maxLines = maxLines, text = appItem.appName, fontSize = 18.sp, fontWeight = FontWeight.Bold)
-        if (appItem.canRun) {
-            IconButton(modifier = Modifier.background(MaterialTheme.colors.primary), onClick = { launchCallback(appItem.appPackage) }) {
-                Icon(imageVector = Icons.Default.RocketLaunch, tint = LocalExtColors.current.icon, contentDescription = null)
-            }
+        IconButton(modifier = Modifier.background(MaterialTheme.colors.primary).size(35.dp), onClick = { launchCallback(appItem.appPackage) }) {
+            Icon(imageVector = Icons.Default.RocketLaunch, tint = LocalExtColors.current.icon, contentDescription = null)
         }
     }
 }
@@ -41,7 +41,7 @@ fun AppRowUITest() {
         appVersion = "1.0",
         appApkSHA1 = "sha-1-la-la-la",
         appSourceDir = "/test/some-app.apk",
-        canRun = true,
+        firstInstallTime = 0L,
     )
     AppRowUI(appItem, false) {}
 }

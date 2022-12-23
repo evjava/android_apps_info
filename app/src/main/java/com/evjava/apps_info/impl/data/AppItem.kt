@@ -10,5 +10,9 @@ data class AppItem(
     val appVersion: String,
     val appApkSHA1: String,
     val appSourceDir: String,
-    val canRun: Boolean,
-) : Item
+    val firstInstallTime: Long,
+) : Item {
+    fun match(t: String): Boolean {
+        return (t.isEmpty()) || this.appName.contains(t) || this.appPackage.contains(t) || this.appVersion.contains(t)
+    }
+}
