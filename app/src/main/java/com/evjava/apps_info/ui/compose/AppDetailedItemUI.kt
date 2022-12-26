@@ -25,8 +25,7 @@ fun AppDetailedItemUI(modifier: Modifier = Modifier, appItem: AppItem, launchCal
                 AppRowUI(appItem = appItem, fullTitle = true, launchCallback = launchCallback)
                 Text(text = "version: ${appItem.appVersion}", fontSize = 15.sp)
                 Text(text = "package: ${appItem.appPackage}", fontSize = 15.sp)
-//                Text(text = "SD: ${i.appSourceDir}", fontSize = 14.sp)
-                Text(text = "SHA-1: ${appItem.appApkSHA1}", fontSize = 13.sp)
+                Text(text = "SHA1: ${appItem.appApkSHA1}", fontSize = 13.sp)
             }
         }
     }

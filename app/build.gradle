@@ -81,7 +81,4 @@ dependencies {
 
     // LOGGING
     implementation("io.github.aakira:napier:2.6.1")
-
-    // for SHA-1
-    implementation 'com.blankj:utilcodex:1.31.1'
 }

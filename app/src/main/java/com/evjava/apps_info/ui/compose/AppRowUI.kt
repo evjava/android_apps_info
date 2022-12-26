@@ -39,7 +39,6 @@ fun AppRowUITest() {
         appName = "Some app with very long title such long that it takes all area",
         appPackage = "pack.test",
         appVersion = "1.0",
-        appApkSHA1 = "sha-1-la-la-la",
         appSourceDir = "/test/some-app.apk",
         firstInstallTime = 0L,
     )

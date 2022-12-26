@@ -4,7 +4,6 @@ import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Build
-import com.blankj.utilcode.util.AppUtils
 import com.evjava.apps_info.impl.data.AppItem
 
 object PackageManagerExt {
@@ -34,14 +33,12 @@ object PackageManagerExt {
         val pi: PackageInfo = this.getPackageInfo(packageName, 0)
 
         val appSourceDir = pi.applicationInfo.sourceDir
-        val appSignaturesSHA1 = AppUtils.getAppSignaturesSHA1(packageName)
         return this.getLaunchIntentForPackage(packageName)?.let {
             AppItem(
                 icon = this.getApplicationIcon(packageName),
                 appName = pi.applicationInfo.loadLabel(this).toString(),
                 appPackage = packageName,
                 appVersion = pi.versionName,
-                appApkSHA1 = appSignaturesSHA1.joinToString(),
                 appSourceDir = appSourceDir,
                 firstInstallTime = pi.firstInstallTime,
             )
