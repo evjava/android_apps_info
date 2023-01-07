@@ -11,6 +11,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ProvideTextStyle
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -22,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.evjava.apps_info.api.Message
 import com.evjava.apps_info.api.ScreenControllerI
 import com.evjava.apps_info.api.SearchControllerI
 import com.evjava.apps_info.api.SearchState
@@ -36,6 +38,10 @@ fun ToolbarUI(controller: ScreenControllerI, backPressedHandler: (() -> Boolean)
         when (controller) {
             is SearchControllerI -> ToolbarUIWithSearch(controller, backPressedHandler)
             else -> ToolbarTextIconsUI(controller) {}
+        }
+        IconUI(Icons.Default.DarkMode) {
+            val newTheme = controller.toggleTheme()
+            controller.onNews(Message("New theme: $newTheme"))
         }
     }
 }

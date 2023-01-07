@@ -15,3 +15,4 @@ It can be considered as example of work with:
 - ForegroundService
 - Jetpack Compose
 - Decompose + Reaktive
+- toggling theme (dark/light) 
