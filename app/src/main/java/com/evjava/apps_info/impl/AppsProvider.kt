@@ -8,7 +8,7 @@ import com.evjava.apps_info.api.AppsProviderI
 import com.evjava.apps_info.impl.data.AppItem
 import io.github.aakira.napier.Napier
 
-class AppsProvider(val pm: PackageManager, val launchCallback: (Intent) -> Unit) : AppsProviderI {
+class AppsProvider(private val pm: PackageManager, val launchCallback: (Intent) -> Unit) : AppsProviderI {
     override fun getApps(): List<AppItem> = pm.getApps()
     override fun getByPackageName(packageName: String): AppItem? = pm.getByPackageName(packageName)
 
@@ -20,5 +20,4 @@ class AppsProvider(val pm: PackageManager, val launchCallback: (Intent) -> Unit)
             else -> "Launched: \"$packageName\"".apply { launchCallback(i) }
         }
     }
-
 }

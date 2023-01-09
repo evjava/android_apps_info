@@ -9,7 +9,9 @@ import com.evjava.apps_info.impl.data.AppItem
 object PackageManagerExt {
     fun PackageManager.getApps(): List<AppItem> {
         val infos: List<ApplicationInfo> = this.getInstalledApplications(PackageManager.GET_META_DATA)
-        return infos.mapNotNull { this.getByPackageName(it.packageName) }
+        return infos
+            .mapNotNull { this.getByPackageName(it.packageName) }
+            .sortedBy { it.appName }
     }
 
     fun PackageManager.getByPackageName(packageName: String): AppItem? {
