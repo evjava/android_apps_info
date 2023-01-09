@@ -16,4 +16,10 @@ object PrefsUtils {
         }
 
     fun SharedPreferences.strPref(key: String, default: String) = mapPref(key, { it ?: default }, { it })
+
+    fun SharedPreferences.boolPref(key: String, defaultValue: Boolean) =
+        object : ReadWriteProperty<Any?, Boolean> {
+            override fun getValue(thisRef: Any?, property: KProperty<*>): Boolean = getBoolean(key, defaultValue)
+            override fun setValue(thisRef: Any?, property: KProperty<*>, value: Boolean) = editApply { putBoolean(key, value) }
+        }
 }

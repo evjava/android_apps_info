@@ -12,6 +12,7 @@ import androidx.compose.material.ProvideTextStyle
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DarkMode
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -39,10 +40,17 @@ fun ToolbarUI(controller: ScreenControllerI, backPressedHandler: (() -> Boolean)
             is SearchControllerI -> ToolbarUIWithSearch(controller, backPressedHandler)
             else -> ToolbarTextIconsUI(controller) {}
         }
-        IconUI(Icons.Default.DarkMode) {
-            val newTheme = controller.toggleTheme()
-            controller.onNews(Message("New theme: $newTheme"))
+
+        @Composable
+        fun IconUILocal(img: ImageVector, callback: () -> String) {
+            IconUI(img) {
+                val msg = callback()
+                controller.onNews(Message(msg))
+            }
         }
+
+        IconUILocal(Icons.Default.DarkMode) { controller.toggleTheme() }
+        IconUILocal(Icons.Default.Notifications) { controller.toggleTracker() }
     }
 }
 

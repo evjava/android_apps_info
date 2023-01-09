@@ -4,12 +4,14 @@ import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 import com.evjava.apps_info.App
 import com.evjava.apps_info.api.PrefsI
+import com.evjava.apps_info.impl.PrefsUtils.boolPref
 import com.evjava.apps_info.impl.PrefsUtils.strPref
 
 class Prefs(val app: App): PrefsI {
     private val sharedPrefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(app.applicationContext)
 
-    override var theme by sharedPrefs.strPref(PREF_THEME, "default")
+    override var theme by sharedPrefs.strPref("pref_theme", "default")
+    override var isTrackerEnabled by sharedPrefs.boolPref("pref_is_tracker_enabled", false)
 
     companion object {
         lateinit var instance: Prefs
@@ -21,6 +23,5 @@ class Prefs(val app: App): PrefsI {
             return instance
         }
 
-        val PREF_THEME = "pref_theme"
     }
 }

@@ -5,6 +5,7 @@ interface ApperContextI {
     val prefs: PrefsI
 
     fun toggleTheme(): String
+    fun toggleTracker(newIsEnabled: Boolean? = null): String
 
     fun exit()
 }

@@ -30,7 +30,17 @@ class MainActivity : AppCompatActivity(), ApperContextI {
         val newTheme = if (prefs.theme == "dark") "light" else "dark"
         prefs.theme = newTheme
         ThemeUtils.applyTheme(newTheme)
-        return newTheme
+        return "New theme: $newTheme"
+    }
+
+    override fun toggleTracker(newIsEnabled: Boolean?): String {
+        val isEnabled = newIsEnabled ?: (!prefs.isTrackerEnabled).apply { prefs.isTrackerEnabled = this }
+        val status = if (isEnabled) {
+            startTracker(); "enabled"
+        } else {
+            stopTracker(); "disabled"
+        }
+        return "App tracker: $status"
     }
 
     private fun foregroundServiceRunning(): Boolean {
@@ -47,11 +57,14 @@ class MainActivity : AppCompatActivity(), ApperContextI {
         Napier.i { "App Started! Going to show apps from: $timestamp" }
         rootComponent = RootComponent(this, defaultComponentContext(), timestamp = timestamp)
 
-        startService(Intent(this, AppListenerService::class.java))
+        toggleTracker(prefs.isTrackerEnabled)
         setContent {
             RootContent(component = rootComponent)
         }
     }
+
+    private fun startTracker() = startService(Intent(this, AppListenerService::class.java))
+    private fun stopTracker() = stopService(Intent(this, AppListenerService::class.java))
 
     companion object {
         val SHOW_INSTALLED_KEY = "SHOW_INSTALLED"
