@@ -28,15 +28,14 @@ object FileSHA1Code {
     fun sha1Code(filePath: String?): String {
         val fileInputStream = FileInputStream(filePath)
         val digest = MessageDigest.getInstance("SHA-1")
-        val digestInputStream = DigestInputStream(fileInputStream, digest)
-        val bytes = ByteArray(1024)
-        // read all file content
-        @Suppress("ControlFlowWithEmptyBody")
-        while (digestInputStream.read(bytes) > 0);
-
-//        digest = digestInputStream.getMessageDigest();
-        val resultByteArry = digest.digest()
-        return bytesToHexString(resultByteArry)
+        DigestInputStream(fileInputStream, digest).use { digestInputStream ->
+            val bytes = ByteArray(1024)
+            // read all file content
+            @Suppress("ControlFlowWithEmptyBody")
+            while (digestInputStream.read(bytes) > 0);
+            val resultByteArry = digest.digest()
+            return bytesToHexString(resultByteArry)
+        }
     }
 
     /**
@@ -44,9 +43,7 @@ object FileSHA1Code {
      * Input file content: (only one line bellow)
      * This is a file for test sha1 hash code
      *
-     * Output:
-     * 7465503EADC8799AE6F64E03EE87AB747B9D08F5
-     *
+     * Output: 7465503EADC8799AE6F64E03EE87AB747B9D08F5
      */
     @Throws(IOException::class, NoSuchAlgorithmException::class)
     @JvmStatic
@@ -65,7 +62,7 @@ object FileSHA1Code {
      * @param bytes array of byte
      * @return hex String represent the array of byte
      */
-    fun bytesToHexString(bytes: ByteArray): String {
+    private fun bytesToHexString(bytes: ByteArray): String {
         val sb = StringBuilder()
         for (b in bytes) {
             val value = b.toInt() and 0xFF
